@@ -2,24 +2,14 @@
 #![no_std] // no standard library
 #![no_main] // no main function (program-level entry point)
 
-mod vga_writer;
+mod vga_buffer;
 
 use core::panic::PanicInfo;
-use crate::vga_writer::vga_buffer::*;
-
-static HELLO: &[u8] = b"Hello World!";
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
 
-    // write a string to the screen using the vga_writer
-    let mut writer = vga_writer::Writer {
-        column_position: 0,
-        color_code: ColorCode::new(Color::Yellow, Color::Black),
-        buffer: unsafe { &mut *(0xb8000 as *mut Buffer)}
-    };
-
-    writer.write_byte(b'H');
+    vga_buffer::vga_text_mode_test(vga_buffer::Color::Yellow, vga_buffer::Color::Black);
 
     // loop indefinitely
     loop {}
