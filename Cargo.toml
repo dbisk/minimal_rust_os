@@ -16,4 +16,8 @@ version = "^1.0"
 features = ["spin_no_std"]
 
 [package.metadata.bootimage]
-run-command = ["D:\\Program Files\\qemu\\qemu-system-x86_64.exe", "-drive", "format=raw,file={}"]
+# uncomment the following line if running QEMU on Windows
+# run-command = ["D:\\Program Files\\qemu\\qemu-system-x86_64.exe", "-drive", "format=raw,file={}"]
+
+# uncomment the following line if running QEMU on Linux
+run-command = ["qemu-system-x86_64", "-drive", "format=raw,file={}"]
