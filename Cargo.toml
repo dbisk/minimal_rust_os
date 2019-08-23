@@ -10,6 +10,7 @@ edition = "2018"
 bootloader = "0.6.4"
 volatile = "0.2.6"
 spin = "0.5.0"
+x86_64 = "0.7.0"
 
 [dependencies.lazy_static]
 version = "^1.0"
@@ -21,3 +22,6 @@ features = ["spin_no_std"]
 
 # uncomment the following line if running QEMU on Linux
 run-command = ["qemu-system-x86_64", "-drive", "format=raw,file={}"]
+
+# tells bootimage to append this to qemu when in test/debug mode
+test-args = ["-device", "isa-debug-exit,iobase=0xf4,iosize=0x04"]
